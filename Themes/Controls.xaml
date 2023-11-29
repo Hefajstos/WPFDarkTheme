@@ -1134,7 +1134,6 @@
         <Setter Property="BorderBrush" Value="{DynamicResource OptionMark.Static.Border}"/>
         <Setter Property="Foreground" Value="{DynamicResource ABrush.Foreground.Static}"/>
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-        <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -1244,7 +1243,7 @@
         </Setter>
     </Style>
 
-    <Style TargetType="{x:Type TextElement}" BasedOn="{StaticResource {x:Type TextElement}}">
+    <Style TargetType="{x:Type TextElement}">
         <Setter Property="Foreground" Value="{DynamicResource ABrush.Foreground.Static}"/>
         <Setter Property="RenderOptions.EdgeMode" Value="Unspecified"/>
         <Setter Property="TextOptions.TextRenderingMode" Value="ClearType"/>
@@ -2423,6 +2422,9 @@
             <Trigger Property="IsNewItem" Value="True">
                 <Setter Property="Margin" Value="{Binding NewItemMargin, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
             </Trigger>
+            <Trigger Property="AlternationIndex" Value="1">
+                <Setter Property="Background" Value="{DynamicResource DataGrid.RowHeader.Static.Background}"/>
+            </Trigger>
         </Style.Triggers>
     </Style>
 
@@ -2465,15 +2467,15 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type DataGridCell}">
-                    <Border x:Name="border" Background="{DynamicResource DataGrid.CellItem.Static.Background}" BorderThickness="0" SnapsToDevicePixels="True">
+                    <Border x:Name="border" Background="Transparent" BorderThickness="0" SnapsToDevicePixels="True">
                         <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="border" Property="Background" Value="{DynamicResource DataGrid.CellItem.MouseOver.Background}"/>
+                            <Setter TargetName="border" Property="Background" Value="{DynamicResource ABrush.Tone8.Background.Static}"/>
                         </Trigger>
                         <Trigger Property="IsSelected" Value="True">
-                            <Setter TargetName="border" Property="Background" Value="{DynamicResource DataGrid.Row.Selected.Background}"/>
+                            <Setter TargetName="border" Property="Background" Value="{DynamicResource ABrush.AccentTone3.Background.Static}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -4184,6 +4186,7 @@
         <Setter Property="Foreground" Value="{DynamicResource ABrush.Foreground.Static}"/>
         <Setter Property="Background" Value="{DynamicResource ABrush.Tone4.Background.Static}"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="IsEnabled" Value="False"/>
         <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
         <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
         <Setter Property="Template">
@@ -4233,9 +4236,9 @@
                         </VisualStateManager.VisualStateGroups>
                         <Border x:Name="Border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="1" Opacity="1" Padding="{TemplateBinding Padding}">
                             <Grid x:Name="WatermarkContent" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
-                                <Border x:Name="ContentElement" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1"/>
-                                <Border x:Name="watermark_decorator" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1">
-                                    <ContentControl x:Name="PART_Watermark" Focusable="False" IsHitTestVisible="False" Opacity="0" Padding="2"/>
+                                <Border x:Name="ContentElement" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0"/>
+                                <Border x:Name="watermark_decorator" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0">
+                                    <ContentControl x:Name="PART_Watermark" Focusable="False" IsHitTestVisible="False" Opacity="0" Padding="2" Foreground="White"/>
                                 </Border>
                                 <ScrollViewer x:Name="PART_ContentHost" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="0" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
                                 <Border x:Name="FocusVisual" BorderBrush="{DynamicResource ABrush.AccentTone2.Border.Static}" CornerRadius="1" IsHitTestVisible="False" Opacity="0"/>
@@ -4251,9 +4254,9 @@
         <Setter Property="Foreground" Value="{DynamicResource ABrush.Foreground.Static}"/>
         <Setter Property="IsTodayHighlighted" Value="True"/>
         <Setter Property="SelectedDateFormat" Value="Short"/>
-        <Setter Property="Background" Value="{DynamicResource ABrush.Tone5.Background.Static}"/>
+        <Setter Property="Background" Value="{DynamicResource ABrush.Tone4.Background.Static}"/>
         <Setter Property="Padding" Value="2"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource ABrush.Tone5.Border.Static}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource ABrush.Tone4.Border.Static}"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         <Setter Property="CalendarStyle" Value="{StaticResource {x:Type Calendar}}"/>
@@ -4375,14 +4378,14 @@
                             </Grid.ColumnDefinitions>
                             <Button x:Name="PART_Button" Grid.Column="1" Foreground="{TemplateBinding Foreground}" Focusable="False" HorizontalAlignment="Left" Margin="3,0,3,0" Grid.Row="0" Template="{StaticResource DropDownButtonTemplate}" VerticalAlignment="Top" Width="20"/>
                             <DatePickerTextBox x:Name="PART_TextBox" Grid.Column="0" Focusable="{TemplateBinding Focusable}"
-                                               HorizontalContentAlignment="Stretch" Grid.Row="0" VerticalContentAlignment="Stretch"/>
+                                               HorizontalContentAlignment="Stretch" Grid.Row="0" VerticalContentAlignment="Stretch" Background="Transparent" Foreground="White"/>
                             <Grid x:Name="PART_DisabledVisual" Grid.Column="0" Grid.ColumnSpan="2" IsHitTestVisible="False" Opacity="0" Grid.Row="0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
-                                <Rectangle Grid.Column="0" Fill="{DynamicResource ABrush.Tone4.Background.Static}" Grid.Row="0" RadiusX="1" RadiusY="1"/>
-                                <Rectangle Grid.Column="1" Fill="{DynamicResource ABrush.Tone4.Background.Static}" Height="18" Margin="3,0,3,0" Grid.Row="0" RadiusX="1" RadiusY="1" Width="19"/>
+                                <Rectangle Grid.Column="0" Fill="Transparent" Grid.Row="0" RadiusX="1" RadiusY="1"/>
+                                <Rectangle Grid.Column="1" Fill="Transparent" Height="18" Margin="3,0,3,0" Grid.Row="0" RadiusX="1" RadiusY="1" Width="19"/>
                                 <Popup x:Name="PART_Popup" AllowsTransparency="True" Placement="Bottom" PlacementTarget="{Binding ElementName=PART_TextBox}" StaysOpen="False"/>
                             </Grid>
                         </Grid>
