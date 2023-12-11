@@ -486,11 +486,8 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Thumb}">
-                    <Rectangle x:Name="rectangle" Fill="{DynamicResource ScrollBar.Static.Thumb}" Height="{TemplateBinding Height}" SnapsToDevicePixels="True" Width="{TemplateBinding Width}" Margin="1,0"/>
+                    <Rectangle x:Name="rectangle" Fill="{DynamicResource ScrollBar.MouseOver.Thumb}" Height="{TemplateBinding Height}" SnapsToDevicePixels="True" Width="{TemplateBinding Width}" Margin="1,0"/>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="Fill" TargetName="rectangle" Value="{DynamicResource ScrollBar.MouseOver.Thumb}"/>
-                        </Trigger>
                         <Trigger Property="IsDragging" Value="true">
                             <Setter Property="Fill" TargetName="rectangle" Value="{DynamicResource ScrollBar.Pressed.Thumb}"/>
                         </Trigger>
@@ -506,11 +503,8 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Thumb}">
-                    <Rectangle x:Name="rectangle" Fill="{DynamicResource ScrollBar.Static.Thumb}" Height="{TemplateBinding Height}" SnapsToDevicePixels="True" Width="{TemplateBinding Width}" Margin="0,1"/>
+                    <Rectangle x:Name="rectangle" Fill="{DynamicResource ScrollBar.MouseOver.Thumb}" Height="{TemplateBinding Height}" SnapsToDevicePixels="True" Width="{TemplateBinding Width}" Margin="0,1"/>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="Fill" TargetName="rectangle" Value="{DynamicResource ScrollBar.MouseOver.Thumb}"/>
-                        </Trigger>
                         <Trigger Property="IsDragging" Value="true">
                             <Setter Property="Fill" TargetName="rectangle" Value="{DynamicResource ScrollBar.Pressed.Thumb}"/>
                         </Trigger>
