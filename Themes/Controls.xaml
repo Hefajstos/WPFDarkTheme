@@ -249,8 +249,8 @@
     <ControlTemplate x:Key="SliderHorizontal" TargetType="{x:Type Slider}">
         <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
             <Grid>
-                <TickBar x:Name="TopTick" Fill="{TemplateBinding Foreground}" Height="4" Margin="0,0,0,2" Placement="Top" Visibility="Collapsed"/>
-                <TickBar x:Name="BottomTick" Fill="{TemplateBinding Foreground}" Height="4" Margin="0,2,0,0" Placement="Bottom" Visibility="Collapsed"/>
+                <TickBar x:Name="TopTick" Fill="{TemplateBinding Foreground}" Height="14" Margin="0,0,0,2" Placement="Top" Visibility="Collapsed"/>
+                <TickBar x:Name="BottomTick" Fill="{TemplateBinding Foreground}" Height="14" Margin="0,2,0,0" Placement="Bottom" Visibility="Collapsed"/>
                 <Border x:Name="TrackBackground" BorderBrush="{DynamicResource SliderThumb.Track.Border}" BorderThickness="1" Background="{DynamicResource SliderThumb.Track.Background}" Height="4.0" Margin="5,0" VerticalAlignment="center">
                     <Canvas Margin="-6,-1">
                         <Rectangle x:Name="PART_SelectionRange" Fill="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" Height="4.0" Visibility="Hidden"/>
@@ -895,8 +895,8 @@
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="97*"/>
+                            <RowDefinition Height="3*"/>
                         </Grid.RowDefinitions>
                         <Rectangle x:Name="Corner" Grid.Column="1" Fill="Transparent" Grid.Row="1"/>
                         <ScrollContentPresenter x:Name="PART_ScrollContentPresenter" CanContentScroll="{TemplateBinding CanContentScroll}" CanHorizontallyScroll="False" CanVerticallyScroll="False" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Grid.Column="0" Margin="{TemplateBinding Padding}" Grid.Row="0"/>
