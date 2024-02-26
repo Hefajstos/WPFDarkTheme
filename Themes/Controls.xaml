@@ -2,7 +2,8 @@
                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:ap="clr-namespace:FramePFX.Themes.Attached"
-                    xmlns:themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
+                    xmlns:themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2"
+                    xmlns:local="clr-namespace:FramePFX.Themes">
     <Style x:Key="FocusVisual">
         <Setter Property="Control.Template">
             <Setter.Value>
@@ -4468,6 +4469,7 @@
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
+    <local:ResizeModeConverter x:Key="ResizeModeConverter"/>
     <Style x:Key="CustomWindowStyle" TargetType="{x:Type Window}">
         <Setter Property="Background" Value="{DynamicResource Window.Static.Background}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource Window.Static.Border}"/>
@@ -4502,7 +4504,7 @@
                                             </Grid>
                                         </Button>
 
-                                        <Button x:Name="btnMaximize" Focusable="False" Background="Transparent" BorderBrush="Transparent" Width="40"
+                                        <Button x:Name="btnMaximize" Focusable="False" IsEnabled="{Binding ResizeMode, RelativeSource={RelativeSource AncestorType=Window}, Converter={StaticResource ResizeModeConverter}}" Background="Transparent" BorderBrush="Transparent" Width="40"
                                                     WindowChrome.IsHitTestVisibleInChrome="True" Click="AutoMinimize_Event">
                                             <Grid Width="12" Height="12">
                                                 <Rectangle StrokeThickness="2" Stroke="{DynamicResource ABrush.Glyph.Static}" Margin="0"/>
