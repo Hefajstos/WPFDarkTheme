@@ -247,12 +247,33 @@
         </Setter>
     </Style>
 
+    <local:OffsetConverter x:Key="OffsetConverter"/>
     <ControlTemplate x:Key="SliderHorizontal" TargetType="{x:Type Slider}">
         <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
             <Grid>
                 <TickBar x:Name="TopTick" Fill="{TemplateBinding Foreground}" Height="14" Margin="0,0,0,2" Placement="Top" Visibility="Collapsed"/>
                 <TickBar x:Name="BottomTick" Fill="{TemplateBinding Foreground}" Height="14" Margin="0,2,0,0" Placement="Bottom" Visibility="Collapsed"/>
-                <Border x:Name="TrackBackground" BorderBrush="{DynamicResource SliderThumb.Track.Border}" BorderThickness="1" Background="{DynamicResource SliderThumb.Track.Background}" Height="4.0" Margin="5,0" VerticalAlignment="center">
+                <Border x:Name="TrackBackground" BorderBrush="{DynamicResource SliderThumb.Track.Border}" BorderThickness="1" Height="4.0" Margin="5,0" VerticalAlignment="center">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                            <GradientStop Color="DarkRed">
+                                <GradientStop.Offset>
+                                    <MultiBinding Converter="{StaticResource OffsetConverter}">
+                                        <Binding Path="Minimum" RelativeSource="{RelativeSource AncestorType=Slider}"/>
+                                        <Binding Path="Maximum" RelativeSource="{RelativeSource AncestorType=Slider}"/>
+                                    </MultiBinding>
+                                </GradientStop.Offset>
+                            </GradientStop>
+                            <GradientStop Color="Green">
+                                <GradientStop.Offset>
+                                    <MultiBinding Converter="{StaticResource OffsetConverter}">
+                                        <Binding Path="Minimum" RelativeSource="{RelativeSource AncestorType=Slider}"/>
+                                        <Binding Path="Maximum" RelativeSource="{RelativeSource AncestorType=Slider}"/>
+                                    </MultiBinding>
+                                </GradientStop.Offset>
+                            </GradientStop>
+                        </LinearGradientBrush>
+                    </Border.Background>
                     <Canvas Margin="-6,-1">
                         <Rectangle x:Name="PART_SelectionRange" Fill="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" Height="4.0" Visibility="Hidden"/>
                     </Canvas>
