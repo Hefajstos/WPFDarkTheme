@@ -76,7 +76,7 @@ namespace FramePFX.Themes
             }
             else
             {
-                return min / max;
+                return min / max - 1;
             }
         }
 
